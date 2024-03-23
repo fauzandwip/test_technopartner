@@ -1,5 +1,4 @@
 import Banner from '../components/Banner';
-import BottomBar from '../components/BottomBar';
 import Header from '../components/Header';
 import ProfileCard from '../components/ProfileCard';
 import QRCode from '../components/QRCode';
@@ -25,7 +24,7 @@ const Home = () => {
 						Authorization: getToken(),
 					},
 				});
-				console.log(data);
+				// console.log(data);
 				setHomeDetail(data.result);
 			} catch (error) {
 				console.log(error);
@@ -49,11 +48,6 @@ const Home = () => {
 			{/* banner */}
 			<div className="h-52">
 				<Banner />
-			</div>
-
-			{/* bottom bar */}
-			<div className=" fixed left-0 bottom-0 w-full shadow-top">
-				<BottomBar />
 			</div>
 
 			{showQR && (
