@@ -17,7 +17,7 @@ const ProfileCard = ({ profile, onClickQR }) => {
 					<div className="flex gap-4">
 						<button
 							onClick={onClickQR}
-							className=" rounded-full shadow-lg bg-white h-20 p-3 active:scale-90 transition-all"
+							className=" rounded-full shadow-lg bg-white h-16 p-3 active:scale-90 transition-all"
 						>
 							<img src={profile?.qrcode} alt="QR Logo" className="h-full" />
 						</button>
@@ -28,7 +28,7 @@ const ProfileCard = ({ profile, onClickQR }) => {
 						</div>
 					</div>
 
-					<div className="flex flex-col items-end">
+					<div className="flex flex-col h-full items-end justify-around">
 						<p className="font-bold">{toLocaleIDCurrency(profile?.saldo)}</p>
 						<p className="font-bold text-teal-400">
 							{toLocaleID(profile?.point)}

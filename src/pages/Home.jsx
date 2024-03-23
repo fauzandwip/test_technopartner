@@ -34,7 +34,7 @@ const Home = () => {
 	}, []);
 	const [showQR, setShowQR] = useState(false);
 	return (
-		<div className="w-full h-screen flex flex-col bg-slate-100">
+		<div className="w-full h-screen flex flex-col bg-slate-100 overflow-x-hidden">
 			{/* header */}
 			<div className=" h-20 bg-white">
 				<Header />
@@ -46,8 +46,8 @@ const Home = () => {
 			</div>
 
 			{/* banner */}
-			<div className="h-52">
-				<Banner />
+			<div className="h-max bg-cyan-500">
+				<Banner data={homeDetail.banner} />
 			</div>
 
 			{showQR && (

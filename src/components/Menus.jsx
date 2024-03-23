@@ -7,7 +7,14 @@ const Menus = ({ data }) => {
 			<h1 className="px-4 py-3 font-medium">{data.category_name}</h1>
 			<div className="flex flex-col bg-white pr-4 pl-1">
 				{data.menu.map((menu, index) => {
-					return <MenuItem key={index} menu={menu} />;
+					return (
+						<div key={index}>
+							<MenuItem menu={menu} />
+							{index !== data.menu.length - 1 && (
+								<div className="border-b-2 border-dotted" />
+							)}
+						</div>
+					);
 				})}
 			</div>
 		</div>
