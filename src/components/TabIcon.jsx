@@ -1,17 +1,18 @@
 import PropTypes from 'prop-types';
 
-const TabIcon = ({ title, imgUrl, alt, color = 'text-black' }) => {
+const TabIcon = ({ onClick, title, imgUrl, alt, color = 'text-black' }) => {
 	return (
-		<div className={'flex flex-col items-center ' + color}>
+		<button onClick={onClick} className={'flex flex-col items-center ' + color}>
 			<img src={imgUrl} alt={alt} className=" h-8" />
 			<h1 className=" font-medium text-sm">{title}</h1>
-		</div>
+		</button>
 	);
 };
 
 export default TabIcon;
 
 TabIcon.propTypes = {
+	onClick: PropTypes.func,
 	title: PropTypes.string,
 	imgUrl: PropTypes.string,
 	alt: PropTypes.string,

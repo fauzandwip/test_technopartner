@@ -1,52 +1,66 @@
+import { useEffect, useState } from 'react';
 import MenuTopBar from '../components/MenuTopBar';
 import Menus from '../components/Menus';
+import api from '../api';
+import { getToken } from '../helpers/token';
 
 const Menu = () => {
-	const categories = [
-		'Seasonal Product',
-		'Best Seller',
-		'Coffe',
-		'Cold Brew',
-		'Chocolate',
-	];
+	const [dataMenus, setDataMenus] = useState([]);
+	const [categories, setCategories] = useState([]);
+	const [selectedCategory, setSelectedCategory] = useState(null);
 
-	const menus = [
-		{
-			name: 'Latte Freddo',
-			description:
-				'A rich Espresso with perfectly steamed milk, topped with delicate foamed milk, served in brown sugar on top of the coffee.',
-			photo: 'https://soal.staging.id/img/Latte Freddo.png',
-			price: 39000,
-		},
-		{
-			name: 'Caramel Macchiato',
-			description:
-				'A delightful signature of Maxx Coffee. A creamy blend of vanilla and intense Espresso, topped with smooth velvety foam and caramel sauce.',
-			photo: 'https://soal.staging.id/img/Caramel Macchiato.png',
-			price: 50000,
-		},
-		{
-			name: 'Green Tea Latte',
-			description:
-				'A perfect combination between Maxx Coffees special green tea and fresh milk.',
-			photo: 'https://soal.staging.id/img/Green Tea Latte.png',
-			price: 47000,
-		},
-	];
+	useEffect(() => {
+		const getMenus = async () => {
+			try {
+				const { data } = await api.post(
+					'/api/menu',
+					{
+						show_all: 1,
+					},
+					{
+						headers: {
+							Authorization: getToken(),
+						},
+					}
+				);
+				// console.log(data);
+				setDataMenus(data.result.categories);
+				const categoryNames = [...data.result.categories].map(
+					(el) => el.category_name
+				);
+				setSelectedCategory(data.result.categories[0].category_name);
+				setCategories(categoryNames);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		getMenus();
+	}, []);
 
 	return (
-		<div className="flex flex-col w-full min-h-screen bg-slate-100">
+		<div className="flex flex-col w-full min-h-screen bg-slate-100  pb-32">
 			{/* menu title */}
 			<div className="w-full text-center py-4 bg-white">
 				<h1 className=" text-lg font-bold">MENU</h1>
 			</div>
 
 			{/* top bar */}
-			<MenuTopBar categories={categories} />
+			<div className="overflow-x-scroll">
+				<MenuTopBar
+					categories={categories}
+					selectedCategory={selectedCategory}
+					setSelectedCategory={setSelectedCategory}
+					dataMenus={dataMenus}
+					setDataMenus={setDataMenus}
+				/>
+			</div>
 
 			{/* products per categories */}
-			<Menus menus={menus} />
-			<Menus menus={menus} />
+			<div>
+				{dataMenus.map((data, index) => {
+					return <Menus key={index} data={data} />;
+				})}
+			</div>
 		</div>
 	);
 };
