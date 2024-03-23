@@ -1,38 +1,34 @@
+import { useEffect, useState } from 'react';
 import MenuTopBar from '../components/MenuTopBar';
 import Menus from '../components/Menus';
+import api from '../api';
+import { getToken } from '../helpers/token';
 
 const Menu = () => {
-	const categories = [
-		'Seasonal Product',
-		'Best Seller',
-		'Coffe',
-		'Cold Brew',
-		'Chocolate',
-	];
+	const [categories, setCategories] = useState([]);
 
-	const menus = [
-		{
-			name: 'Latte Freddo',
-			description:
-				'A rich Espresso with perfectly steamed milk, topped with delicate foamed milk, served in brown sugar on top of the coffee.',
-			photo: 'https://soal.staging.id/img/Latte Freddo.png',
-			price: 39000,
-		},
-		{
-			name: 'Caramel Macchiato',
-			description:
-				'A delightful signature of Maxx Coffee. A creamy blend of vanilla and intense Espresso, topped with smooth velvety foam and caramel sauce.',
-			photo: 'https://soal.staging.id/img/Caramel Macchiato.png',
-			price: 50000,
-		},
-		{
-			name: 'Green Tea Latte',
-			description:
-				'A perfect combination between Maxx Coffees special green tea and fresh milk.',
-			photo: 'https://soal.staging.id/img/Green Tea Latte.png',
-			price: 47000,
-		},
-	];
+	useEffect(() => {
+		const getMenus = async () => {
+			try {
+				const { data } = await api.post(
+					'/api/menu',
+					{
+						show_all: 1,
+					},
+					{
+						headers: {
+							Authorization: getToken(),
+						},
+					}
+				);
+				console.log(data);
+				setCategories(data.result.categories);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		getMenus();
+	}, []);
 
 	return (
 		<div className="flex flex-col w-full min-h-screen bg-slate-100">
@@ -45,8 +41,11 @@ const Menu = () => {
 			<MenuTopBar categories={categories} />
 
 			{/* products per categories */}
-			<Menus menus={menus} />
-			<Menus menus={menus} />
+			<div>
+				{categories.map((data, index) => {
+					return <Menus key={index} data={data} />;
+				})}
+			</div>
 		</div>
 	);
 };

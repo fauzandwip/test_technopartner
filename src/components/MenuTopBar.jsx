@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 const MenuTopBar = ({ categories }) => {
 	return (
 		<div className="flex w-max bg-white">
-			{categories.map((category, index) => {
+			{categories.map((data, index) => {
 				return (
 					<h1 key={index} className="px-4 py-3">
-						{category}
+						{data.category_name}
 					</h1>
 				);
 			})}

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { toLocaleID } from '../helpers/number';
 
 const MenuItem = ({ menu }) => {
 	return (
@@ -8,7 +9,7 @@ const MenuItem = ({ menu }) => {
 				<h1 className="font-medium">{menu.name}</h1>
 				<p className=" text-[10px] text-gray-400">{menu.description}</p>
 			</div>
-			<h1 className="font-medium text-sm">{menu.price}</h1>
+			<h1 className="font-medium text-sm">{toLocaleID(menu.price)}</h1>
 		</div>
 	);
 };

@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 
-const Menus = ({ menus }) => {
+const Menus = ({ data }) => {
 	return (
 		<div className="w-full flex flex-col">
-			<h1 className="px-4 py-3">Seasonal Product</h1>
+			<h1 className="px-4 py-3">{data.category_name}</h1>
 			<div className="flex flex-col bg-white pr-4 pl-1">
-				{menus.map((menu, index) => {
+				{data.menu.map((menu, index) => {
 					return <MenuItem key={index} menu={menu} />;
 				})}
 			</div>
@@ -17,5 +17,5 @@ const Menus = ({ menus }) => {
 export default Menus;
 
 Menus.propTypes = {
-	menus: PropTypes.array,
+	data: PropTypes.object,
 };
