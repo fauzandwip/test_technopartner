@@ -11,7 +11,7 @@ const Menus = ({ data }) => {
 						<div key={index}>
 							<MenuItem menu={menu} />
 							{index !== data.menu.length - 1 && (
-								<div className="border-b-2 border-dotted" />
+								<div className=" border-b border-dashed" />
 							)}
 						</div>
 					);
