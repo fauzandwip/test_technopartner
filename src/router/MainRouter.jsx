@@ -1,5 +1,6 @@
 import { createBrowserRouter, redirect } from 'react-router-dom';
 import Login from '../pages/Login';
+import Home from '../pages/Home';
 
 const router = createBrowserRouter([
 	{
@@ -7,7 +8,8 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: '',
-				loader: () => redirect('/login'),
+				element: <Home />,
+				// loader: () => redirect('/login'),
 			},
 		],
 	},
