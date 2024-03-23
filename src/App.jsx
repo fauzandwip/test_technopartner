@@ -1,9 +1,10 @@
+import { RouterProvider } from 'react-router-dom';
+import router from './router/MainRouter';
+
 function App() {
 	return (
 		<>
-			<p className=" text-2xl underline font-bold italic text-cyan-600">
-				TailwindCSS
-			</p>
+			<RouterProvider router={router} />
 		</>
 	);
 }
