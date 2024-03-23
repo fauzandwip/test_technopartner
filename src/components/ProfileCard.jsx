@@ -17,7 +17,7 @@ const ProfileCard = ({ profile, onClickQR }) => {
 					<div className="flex gap-4 h-full items-center">
 						<button
 							onClick={onClickQR}
-							className=" rounded-full shadow-lg bg-white h-16 p-3 active:scale-90 transition-all"
+							className=" rounded-full shadow-xl bg-white h-20 p-3 active:scale-90 transition-all"
 						>
 							<img src={profile?.qrcode} alt="QR Logo" className="h-full" />
 						</button>
