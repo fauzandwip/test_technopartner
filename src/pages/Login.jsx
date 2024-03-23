@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 	const navigate = useNavigate();
-	const [email, setEmail] = useState('support@technopartner.id');
-	const [password, setPassword] = useState('1234567');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 
 	const handleOnLogin = async (e) => {
 		e.preventDefault();
