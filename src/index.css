@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.border-dot {
+	background: radial-gradient(circle, gray 0.5px, transparent 2px);
+	background-size: 10px 6px;
+	border: 1px solid transparent;
+}
